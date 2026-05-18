@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<title>KATONG – Buku Saku Digital Inspektorat Provinsi Maluku</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green-deep: #416fa5;
+    --green-mid: #7ba7e1;
+    --green-light: #dce8ff;
+    --green-pale: #eef4ff;
+    --green-ultra-pale: #f5f8ff;
+    --red-soft: #ff9aa2;
+    --gold: #e7b93e;
+    --gold-light: #ffe7b3;
+    --blue-soft: #ffcba4;
+    --blue-pale: #b8bdfe;
+    --text-dark: #23324a;
+    --text-mid: #4b5d79;
+    --text-light: #7c8ba1;
+    --white: #ffffff;
+    --shadow: 0 4px 20px rgba(100, 116, 139, 0.08);
+    --shadow-lg: 0 8px 40px rgba(100, 116, 139, 0.12);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    font-family: 'Source Sans 3', sans-serif;
+    background: var(--green-ultra-pale);
+    color: var(--text-dark);
+    min-height: 100vh;
+  }
+
+  /* ===== COVER ===== */
+  #cover {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--green-deep) 0%, #e7edf8 0%, var(--green-mid) 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 40px 20px;
+    padding-bottom: 60px;
+  }
+  #cover::before {
+    content: '';
+    position: absolute;
+    top: -100px; right: -100px;
+    width: 500px; height: 500px;
+    border-radius: 50%;
+    background: radial-gradient(circle at bottom left, rgba(123,167,225,0.35) 0%, transparent 40%);
+  }
+  #cover::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle at top right, rgba(220,232,255,0.45) 0%, transparent 35%);
+  }
+
+  .cover-badge {
+    background: rgba(224, 195, 101, 0.988);
+    border: 1px solid rgb(238, 236, 232);
+    color: var(--black);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    padding: 6px 18px;
+    border-radius: 20px;
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+
+  .cover-logo {
+    width: 160px;
+    height: 160px;
+    object-fit: contain;
+    mix-blend-mode: multiply;
+    filter: brightness(1.05) contrast(1.1) transparate (1) drop-shadow(0 8px 24px rgba(0,0,0,0.2));
+    margin-bottom: 15px;
+    opacity: 1;
+    border-radius: 0;
+  }
+
+  .cover-inst {
+    color: rgb(23, 12, 12);
+    font-size: 15px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 6px;
+    font-weight: 400;
+  }
+
+  .cover-title-main {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(60px, 12vw, 90px);
+    font-weight: 700;
+    color: var(--gold-light);
+    letter-spacing: 6px;
+    text-align: center;
+    line-height: 1;
+    text-shadow: 0 2px 10px rgba(2, 3, 5, 0.93);
+    opacity: 1;
+  }
+
+  .cover-divider {
+    width: 60px;
+    height: 3px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    margin: 18px auto;
+    border-radius: 24px;
+  }
+
+  .cover-subtitle {
+    color: rgb(20, 9, 9);
+    font-size: 13px;
+    text-align: center;
+    font-weight: 400;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+    max-width: 380px;
+    opacity: 1;
+  }
+
+  .cover-stats {
+    display: flex;
+    gap: 20px;
+    margin: 32px 0;
+    opacity: 1;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .cover-stat {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 12px;
+    padding: 12px 20px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+  }
+
+  .cover-stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--black);
+    line-height: 1;
+  }
+
+  .cover-stat-label {
+    font-size: 10px;
+    color: rgb(8, 2, 2);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 4px;
+  }
+
+  .cover-btn {
+    background: linear-gradient(135deg, var(--gold), #f0c46b, #d89b00);
+    color: rgb(12, 6, 6);
+    border: none;
+    padding: 14px 36px;
+    border-radius: 30px;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 6px 24px rgba(201,162,39,0.4);
+    transition: all 0.3s ease;
+    font-family: 'Source Sans 3', sans-serif;
+    text-transform: uppercase;
+    position: relative;
+    z-index: 10;
+    opacity: 1;
+    -webkit-tap-highlight-color: rgba(201,162,39,0.3);
+    touch-action: manipulation;
+  }
+
+  .cover-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 32px rgba(201,162,39,0.5);
+  }
+
+  .cover-footer-text {
+    position: absolute;
+    bottom: 20px;
+    color: rgb(14, 5, 5);
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* ===== APP LAYOUT ===== */
+  #app {
+    display: none;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 16px;
+    min-height: 100vh;
+    min-height: 100dvh;
+    box-sizing: border-box;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  /* ===== MOBILE PORTRAIT - Base (semua HP) ===== */
+  @media screen and (max-width: 600px) {
+    * { box-sizing: border-box; }
+
+    body {
+      overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
+    }
+
+    #app {
+      padding: 8px;
+      width: 100%;
+      max-width: 100%;
+    }
+
+    /* Header app lebih kompak */
+    .app-header {
+      padding: 10px 12px;
+      gap: 10px;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .app-header img { width 32px; height: 32px; }
+    .app-header-text h1 { font-size: 20px; }
+    .app-header-text p { font-size: 12px; }
+    .back-btn { padding: 5px 10px; font-size: 13px; }
+
+    /* Nav bar: 2 baris 3 kolom di HP kecil */
+    .nav-bar {
+      padding: 6px;
+      gap: 4px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: white;
+    }
+    .nav-tab {
+      flex: 1 1 calc(33% - 4px);
+      min-width: 0;
+      max-width: calc(33% - 4px);
+      font-size: 15px;
+      padding: 7px 2px;
+      border-radius: 8px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Temuan rows: 2-kolom lalu chips di bawah */
+    .temuan-row {
+      grid-template-columns: 72px 1fr;
+      grid-template-rows: auto auto;
+      padding: 8px 10px;
+      gap: 6px;
+    }
+    .rekom-chips {
+      grid-column: 1 / -1;
+      justify-content: flex-start;
+    }
+    .temuan-desc { font-size: 12px; line-height: 1.4; }
+    .kode-tag { font-size: 10px; }
+
+    /* Kelompok header */
+    .kelompok-header {
+      font-size: 12px;
+      padding: 10px 12px;
+      margin-top: 14px;
+    }
+
+    /* Rekom grid: 1 kolom */
+    .rekom-grid { grid-template-columns: 1fr; }
+
+    /* Modal */
+    .modal-box {
+      margin: 10px;
+      padding: 18px;
+      max-height: 85vh;
+    }
+
+    /* Section title */
+    .section-title { font-size: 18px; }
+    .section-desc { font-size: 12px; }
+
+    /* Panduan */
+    .panduan-card { padding: 14px; }
+    .kksa-item { padding: 10px; }
+
+    /* Glosarium */
+    .glos-item { padding: 10px 12px; }
+
+    /* Checklist */
+    .checklist-item { padding: 10px 12px; gap: 8px; }
+  }
+
+  /* ===== HP SANGAT KECIL (< 380px) ===== */
+  @media screen and (max-width: 380px) {
+    .nav-tab { font-size: 9px; padding: 6px 1px; }
+    .app-header-text h1 { font-size: 14px; }
+    .temuan-row { grid-template-columns: 62px 1fr; }
+  }
+
+  /* ===== NAV TABS ===== */
+  .nav-bar {
+    background: var(--white);
+    border-radius: 16px;
+    padding: 8px;
+    display: flex;
+    gap: 4px;
+    box-shadow: var(--shadow);
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+  }
+
+  .nav-tab {
+    flex: 1;
+    min-width: 60px;
+    padding: 10px 8px;
+    border: none;
+    background: transparent;
+    border-radius: 10px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-light);
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: center;
+    line-height: 1.3;
+  }
+
+  .nav-tab.active {
+    background: var(--green-deep);
+    color: white;
+    font-weight: 600;
+  }
+
+  .nav-tab:hover:not(.active) {
+    background: var(--green-pale);
+    color: var(--green-deep);
+  }
+
+  /* ===== SECTIONS ===== */
+  .section { display: none; animation: fadeIn 0.3s ease; }
+  .section.active { display: block; }
+
+  /* ===== SEARCH BAR ===== */
+  .search-wrap {
+    position: relative;
+    margin-bottom: 16px;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 14px 16px 14px 48px;
+    border: 2px solid var(--green-pale);
+    border-radius: 12px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px;
+    outline: none;
+    background: var(--white);
+    color: var(--text-dark);
+    transition: border-color 0.2s;
+  }
+
+  .search-input:focus { border-color: var(--green-light); }
+
+  .search-icon {
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-light);
+    font-size: 18px;
+  }
+
+  /* ===== KELOMPOK HEADER ===== */
+  .kelompok-header {
+    background: linear-gradient(135deg, var(--green-deep), var(--green-mid));
+    color: white;
+    padding: 16px 20px;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    margin-top: 20px;
+    font-family: 'Playfair Display', serif;
+    font-size: 15px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    box-shadow: var(--shadow);
+  }
+
+  .kelompok-header .badge {
+    background: rgba(255,255,255,0.2);
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+
+  /* ===== SUB-KELOMPOK ===== */
+  .sub-kelompok {
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+    overflow: hidden;
+  }
+
+  .sub-header {
+    background: linear-gradient(135deg, #2d7a4a15, #4a9d6f10);
+    border-left: 4px solid var(--green-light);
+    padding: 12px 16px;
+    font-weight: 600;
+    font-size: 13px;
+    color: var(--green-deep);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    transition: background 0.2s;
+  }
+
+  .sub-header:hover { background: var(--green-pale); }
+
+  .sub-header .chevron {
+    transition: transform 0.3s;
+    font-size: 12px;
+    color: var(--green-light);
+  }
+
+  .sub-header.open .chevron { transform: rotate(180deg); }
+
+  .sub-body {
+    display: none;
+    padding: 0;
+  }
+
+  .sub-body.open { display: block; }
+
+  /* ===== TEMUAN ROW ===== */
+  .temuan-row {
+    padding: 10px 16px;
+    border-bottom: 1px solid #f0f4f2;
+    display: grid;
+    grid-template-columns: 90px 1fr auto;
+    gap: 10px;
+    align-items: start;
+    transition: background 0.2s;
+  }
+
+  .temuan-row:last-child { border-bottom: none; }
+  .temuan-row:hover { background: var(--green-ultra-pale); }
+
+  .kode-tag {
+    background: var(--green-deep);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 4px 8px;
+    border-radius: 6px;
+    text-align: center;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .kode-tag:hover { background: var(--green-light); }
+
+  .temuan-desc {
+    font-size: 13px;
+    color: var(--text-dark);
+    line-height: 1.5;
+    padding-top: 2px;
+  }
+
+  .rekom-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3px;
+    justify-content: flex-end;
+    padding-top: 2px;
+  }
+
+  .rekom-chip {
+    background: var(--green-pale);
+    color: var(--green-deep);
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+  }
+
+  .rekom-chip:hover {
+    background: var(--green-light);
+    color: white;
+  }
+
+  /* ===== REKOMENDASI SECTION ===== */
+  .rekom-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 12px;
+    padding: 4px 0;
+  }
+
+  .rekom-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+    border-left: 4px solid var(--green-light);
+    transition: all 0.2s;
+    cursor: default;
+  }
+
+  .rekom-card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+    border-left-color: var(--green-deep);
+  }
+
+  .rekom-code {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 6px;
+  }
+
+  .rekom-desc {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+
+  /* ===== PANDUAN ===== */
+  .panduan-card {
+    background: white;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 14px;
+    box-shadow: var(--shadow);
+  }
+
+  .panduan-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--green-pale);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .panduan-title .icon {
+    width: 32px;
+    height: 32px;
+    background: var(--green-pale);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    flex-shrink: 0;
+  }
+
+  .kksa-item {
+    margin-bottom: 16px;
+    padding: 14px;
+    background: var(--green-ultra-pale);
+    border-radius: 10px;
+    border-left: 3px solid var(--green-light);
+  }
+
+  .kksa-label {
+    font-weight: 700;
+    color: var(--green-deep);
+    font-size: 13px;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .kksa-sub {
+    font-size: 11px;
+    color: var(--text-light);
+    font-style: italic;
+  }
+
+  .kksa-def {
+    font-size: 13px;
+    color: var(--text-mid);
+    margin-bottom: 6px;
+    line-height: 1.5;
+  }
+
+  .kksa-example {
+    font-size: 12px;
+    color: var(--text-mid);
+    background: white;
+    border-radius: 6px;
+    padding: 8px 10px;
+    font-style: italic;
+    margin-top: 8px;
+    border-left: 2px solid var(--gold);
+  }
+
+  .rumus-emas {
+    background: linear-gradient(135deg, var(--gold-light), #f5e9b0);
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-top: 14px;
+    border-left: 4px solid var(--gold);
+  }
+
+  .rumus-emas-title {
+    font-weight: 700;
+    color: #7a5a00;
+    font-size: 12px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .rumus-emas p {
+    font-size: 12px;
+    color: #5a4000;
+    margin-bottom: 4px;
+    line-height: 1.5;
+    padding-left: 10px;
+    position: relative;
+  }
+
+  .rumus-emas p::before {
+    content: '→';
+    position: absolute;
+    left: 0;
+    color: var(--gold);
+  }
+
+  /* ===== TIPS ===== */
+  .tips-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+    box-shadow: var(--shadow);
+  }
+
+  .tips-step {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 14px;
+    align-items: flex-start;
+  }
+
+  .step-num {
+    width: 28px;
+    height: 28px;
+    background: var(--green-deep);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .step-content h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 4px;
+  }
+
+  .step-content p {
+    font-size: 13px;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+
+  /* ===== GLOSARIUM ===== */
+  .glos-item {
+    background: white;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 8px rgba(26,77,46,0.07);
+    border-left: 3px solid var(--green-pale);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .glos-item:hover {
+    border-left-color: var(--green-light);
+    box-shadow: var(--shadow);
+  }
+
+  .glos-term {
+    font-weight: 700;
+    color: var(--green-deep);
+    font-size: 13px;
+    margin-bottom: 4px;
+  }
+
+  .glos-def {
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.5;
+  }
+
+  /* ===== MODAL ===== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal-box {
+    background: white;
+    border-radius: 20px;
+    padding: 28px;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    animation: modalIn 0.3s ease;
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+
+  .modal-code {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 6px;
+  }
+
+  .modal-subtitle {
+    font-size: 12px;
+    color: var(--text-light);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+
+  .modal-desc {
+    font-size: 14px;
+    color: var(--text-mid);
+    line-height: 1.6;
+    margin-bottom: 16px;
+    padding: 12px 14px;
+    background: var(--green-ultra-pale);
+    border-radius: 8px;
+  }
+
+  .modal-rekom-title {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--green-deep);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+  }
+
+  .modal-rekom-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .modal-rekom-item {
+    display: flex;
+    gap: 10px;
+    align-items: flex-start;
+    padding: 10px 12px;
+    background: var(--green-pale);
+    border-radius: 8px;
+  }
+
+  .modal-r-code {
+    background: var(--green-deep);
+    color: white;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .modal-r-desc {
+    font-size: 12px;
+    color: var(--text-mid);
+    line-height: 1.4;
+  }
+
+  .modal-close {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background: var(--green-deep);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-family: 'Source Sans 3', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .modal-close:hover { background: var(--green-mid); }
+
+  /* ===== HEADER BAR ===== */
+  .app-header {
+    background: linear-gradient(135deg, var(--green-deep), var(--green-mid));
+    border-radius: 16px;
+    padding: 16px 20px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    box-shadow: var(--shadow-lg);
+  }
+
+  .app-header img {
+    width: 48px;
+    height: 48px;
+    object-fit: contain;
+    mix-blend-mode: lighteen;
+    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.3)) brightness(1.05);
+    border-radius: 4px;
+  }
+
+  .app-header-text h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: white;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+
+  .app-header-text p {
+    font-size: 11px;
+    color: rgba(255,255,255,0.7);
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+  }
+
+  .back-btn {
+    margin-left: auto;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 8px;
+    font-size: 12px;
+    cursor: pointer;
+    font-family: 'Source Sans 3', sans-serif;
+    transition: background 0.2s;
+    white-space: nowrap;
+  }
+
+  .back-btn:hover { background: rgba(255,255,255,0.25); }
+
+  /* ===== SECTION TITLE ===== */
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--green-deep);
+    margin-bottom: 4px;
+  }
+
+  .section-desc {
+    font-size: 13px;
+    color: var(--text-light);
+    margin-bottom: 16px;
+  }
+
+  /* ===== CHECKLIST ===== */
+  .checklist-item {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 16px;
+    background: white;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    box-shadow: 0 2px 8px rgba(26,77,46,0.07);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 2px solid transparent;
+  }
+
+  .checklist-item:hover { border-color: var(--green-light); }
+  .checklist-item.checked { background: var(--green-pale); border-color: var(--green-light); }
+
+  .check-box {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--green-light);
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    flex-shrink: 0;
+    transition: all 0.2s;
+  }
+
+  .checklist-item.checked .check-box {
+    background: var(--green-mid);
+    border-color: var(--green-mid);
+    color: white;
+  }
+
+  .checklist-text {
+    font-size: 13px;
+    color: var(--text-dark);
+    line-height: 1.4;
+  }
+
+  .checklist-item.checked .checklist-text {
+    text-decoration: line-through;
+    color: var(--text-light);
+  }
+
+  /* ===== ANIMATIONS ===== */
+  @keyframes fadeDown {
+    from { opacity:0; transform: translateY(-20px); }
+    to { opacity:1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity:0; transform: translateY(20px); }
+    to { opacity:1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity:0; }
+    to { opacity:1; }
+  }
+  @keyframes modalIn {
+    from { opacity:0; transform: scale(0.9) translateY(20px); }
+    to { opacity:1; transform: scale(1) translateY(0); }
+  }
+
+  /* ===== NO RESULTS ===== */
+  .no-results {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--text-light);
+    font-size: 14px;
+  }
+
+  .no-results .icon { font-size: 36px; margin-bottom: 10px; }
+
+  /* ===== HIGHLIGHT ===== */
+  mark {
+    background: var(--gold-light);
+    color: var(--text-dark);
+    border-radius: 2px;
+    padding: 0 1px;
+  }
+
+  /* ===== SUMBER ===== */
+  .sumber-note {
+    background: var(--blue-pale);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-top: 16px;
+    font-size: 12px;
+    color: var(--blue-soft);
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 500px) {
+    .temuan-row {
+      grid-template-columns: 75px 1fr;
+    }
+    .rekom-chips { justify-content: flex-start; grid-column: 1 / -1; margin-top: 4px; }
+    .temuan-row { grid-template-rows: auto auto auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- COVER -->
+<div id="cover">
+  <div class="cover-badge">Pemerintah Provinsi Maluku</div>
+  <img class="cover-logo" src="data:image/jpeg;base64,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" alt="Logo Maluku">
+  <div class="cover-inst">Inspektorat Daerah Provinsi Maluku</div>
+  <div class="cover-title-main">BUKU SAKU KATONG</div>
+  <div class="cover-divider"></div>
+  <div class="cover-subtitle">Koleksi Atribut Kode Temuan &amp; Kode Rekomendasi Paling Akurat</div>
+  <div class="cover-stats">
+    <div class="cover-stat"><div class="cover-stat-num">3</div><div class="cover-stat-label">Kelompok Kode Temuan</div></div>
+    <div class="cover-stat"><div class="cover-stat-num">11</div><div class="cover-stat-label">Sub-Kelompok Kode Temuan</div></div>
+    <div class="cover-stat"><div class="cover-stat-num">14</div><div class="cover-stat-label">Kode Rekomendasi</div></div>
+  </div>
+  <button class="cover-btn" onclick="openApp()">Buka Buku Saku ▶</button>
+  <div class="cover-footer-text">PerMen PAnRB No. 42 Tahun 2011</div>
+</div>
+
+<!-- APP -->
+<div id="app">
+  <div class="app-header">
+    <img src="data:image/jpeg;base64,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" alt="Logo Maluku">
+    <div class="app-header-text">
+      <h1>KATONG</h1>
+      <p>KATONG kini hadir dalam genggaman. Bukan sekadar daftar, tapi asisten digital yang siap membantu menemukan kode temuan dan rekomendasi yang tepat.</p>
+    </div>
+    <button class="back-btn" onclick="backToCover()">↩ Beranda</button>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav-bar">
+    <button class="nav-tab active" onclick="showTab('temuan')">🔍 Kode Temuan</button>
+    <button class="nav-tab" onclick="showTab('rekomendasi')">📋 Rekomendasi</button>
+    <button class="nav-tab" onclick="showTab('panduan')">📖 Panduan LHP</button>
+    <button class="nav-tab" onclick="showTab('tips')">💡 Tips</button>
+    <button class="nav-tab" onclick="showTab('glosarium')">📚 Glosarium</button>
+    <button class="nav-tab" onclick="showTab('checklist')">✅ Self-Review</button>
+  </div>
+
+  <!-- SECTION: TEMUAN -->
+  <div id="sec-temuan" class="section active">
+    <div class="section-title">Kode Temuan</div>
+    <div class="section-desc"> Disusun sesuai dengan Lampiran 2.1 PerMen PANRB No.42 Tahun 2011 - Klik Kode Temuan untuk melihat detail.</div>
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-input" id="search-temuan" placeholder="Cari kode atau deskripsi temuan..." oninput="filterTemuan(this.value)">
+    </div>
+    <div id="temuan-content"></div>
+  </div>
+
+  <!-- SECTION: REKOMENDASI -->
+  <div id="sec-rekomendasi" class="section">
+    <div class="section-title">Kode Rekomendasi</div>
+    <div class="section-desc">14 kode rekomendasi sesuai Lampiran 2.2 Permen PANRB No. 42 Tahun 2011</div>
+    <div class="rekom-grid" id="rekom-grid"></div>
+  </div>
+
+  <!-- SECTION: PANDUAN -->
+  <div id="sec-panduan" class="section">
+    <div class="section-title">Panduan Penulisan LHP</div>
+    <div class="section-desc">Unsur KKSAR (Kondisi, Kriteria, Sebab, Akibat, dan Rekomendasi) & contoh penetapan kode temuan dan kode rekomendasi</div>
+    <div id="panduan-content"></div>
+  </div>
+
+  <!-- SECTION: TIPS -->
+  <div id="sec-tips" class="section">
+    <div class="section-title">Tips Penulisan</div>
+    <div class="section-desc">Tips Menentukan kode temuan dan rekomendasi yang efektif</div>
+    <div id="tips-content"></div>
+  </div>
+
+  <!-- SECTION: GLOSARIUM -->
+  <div id="sec-glosarium" class="section">
+    <div class="section-title">Glosarium</div>
+    <div class="search-wrap">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-input" id="search-glos" placeholder="Cari istilah..." oninput="filterGlos(this.value)">
+    </div>
+    <div id="glos-content"></div>
+  </div>
+
+  <!-- SECTION: CHECKLIST -->
+  <div id="sec-checklist" class="section">
+    <div class="section-title">Self-Review APIP</div>
+    <div class="section-desc">Centang untuk menandai item yang sudah dilakukan. Progress tersimpan di sesi ini.</div>
+    <div id="checklist-content"></div>
+  </div>
+</div>
+
+<!-- MODAL DETAIL TEMUAN -->
+<div class="modal-overlay" id="modal" onclick="closeModal(event)">
+  <div class="modal-box" id="modal-box">
+    <div id="modal-body"></div>
+    <button class="modal-close" onclick="closeModal()">Tutup</button>
+  </div>
+</div>
+
+<script>
+// ===== DATA =====
+const rekomendasi = [
+  { code: 'R-01', desc: 'Penyetoran ke kas negara/daerah, kas BUMN/D, dan masyarakat' },
+  { code: 'R-02', desc: 'Pengembalian barang kepada negara, daerah, BUMN/D, dan masyarakat' },
+  { code: 'R-03', desc: 'Perbaikan fisik barang/jasa dalam proses pembangunan atau penggantian barang/jasa oleh rekanan' },
+  { code: 'R-04', desc: 'Penghapusan barang milik negara/daerah' },
+  { code: 'R-05', desc: 'Pelaksanaan sanksi administrasi kepegawaian' },
+  { code: 'R-06', desc: 'Perbaikan laporan dan penertiban administrasi/kelengkapan administrasi' },
+  { code: 'R-07', desc: 'Perbaikan sistem dan prosedur akuntansi dan pelaporan' },
+  { code: 'R-08', desc: 'Peningkatan kualitas dan kuantitas sumber daya manusia pendukung sistem pengendalian' },
+  { code: 'R-09', desc: 'Perubahan atau perbaikan prosedur, peraturan dan kebijakan' },
+  { code: 'R-10', desc: 'Perubahan atau perbaikan struktur organisasi' },
+  { code: 'R-11', desc: 'Koordinasi antar instansi termasuk juga penyerahan penanganan kasus kepada instansi yang berwenang' },
+  { code: 'R-12', desc: 'Pelaksanaan penelitian oleh tim khusus atau audit lanjutan oleh unit pengawas intern' },
+  { code: 'R-13', desc: 'Pelaksanaan sosialisasi' },
+  { code: 'R-14', desc: 'Lain-lain' },
+];
+
+const rekomMap = {};
+rekomendasi.forEach(r => rekomMap[r.code] = r.desc);
+
+const kelompok = [
+  {
+    id: 'K1',
+    label: 'Kelompok 1 · Temuan Ketidakpatuhan Terhadap Peraturan',
+    sub: [
+      {
+        id: '1.01',
+        label: 'Sub-Kelompok 1.01 · Kerugian Negara/Daerah atau Kerugian Negara/Daerah yang Terjadi pada Perusahaan Milik Negara/Daerah',
+        rows: [
+          { kode: '1.01.01', desc: 'Belanja dan/atau pengadaan barang/jasa fiktif', rekom: [1,5,9,11,12] },
+          { kode: '1.01.02', desc: 'Rekanan pengadaan barang/jasa tidak menyelesaikan pekerjaan', rekom: [1,3,11,12] },
+          { kode: '1.01.03', desc: 'Kekurangan volume pekerjaan dan/atau barang', rekom: [1,3,5,9,11,12] },
+          { kode: '1.01.04', desc: 'Kelebihan pembayaran selain kekurangan volume pekerjaan dan/atau barang', rekom: [1,3,5,9,11,12] },
+          { kode: '1.01.05', desc: 'Pemahalan harga (Mark up)', rekom: [1,5,9,11,12] },
+          { kode: '1.01.06', desc: 'Penggunaan uang/barang untuk kepentingan pribadi', rekom: [1,2,5,9,11,12] },
+          { kode: '1.01.07', desc: 'Pembayaran honorarium dan/atau biaya perjalanan dinas ganda dan/atau melebihi standar yang ditetapkan', rekom: [1,5,9,11,12] },
+          { kode: '1.01.08', desc: 'Spesifikasi barang/jasa yang diterima tidak sesuai dengan kontrak', rekom: [1,3,5,11,12] },
+          { kode: '1.01.09', desc: 'Belanja tidak sesuai atau melebihi ketentuan', rekom: [1,5,9,11,12] },
+          { kode: '1.01.10', desc: 'Pengembalian pinjaman/piutang atau dana bergulir macet', rekom: [1,5,9,11,12] },
+          { kode: '1.01.11', desc: 'Kelebihan penetapan dan pembayaran restitusi pajak atau penetapan kompensasi kerugian', rekom: [1,5,9,11,12] },
+          { kode: '1.01.12', desc: 'Penjualan/pertukaran/penghapusan aset negara/daerah tidak sesuai ketentuan dan merugikan negara/daerah', rekom: [1,5,9,11,12] },
+          { kode: '1.01.13', desc: 'Pengenaan ganti kerugian negara belum/tidak dilaksanakan sesuai ketentuan', rekom: [1,2,3,5,9,11,12] },
+          { kode: '1.01.14', desc: 'Entitas belum/tidak melaksanakan tuntutan perbendaharaan (TP) sesuai ketentuan', rekom: [1,2,3,5,9,11,12] },
+          { kode: '1.01.15', desc: 'Penghapusan hak tagih tidak sesuai ketentuan', rekom: [1,5,7,9,11,12] },
+          { kode: '1.01.16', desc: 'Pelanggaran ketentuan pemberian diskon penjualan', rekom: [1,5,9,11,12] },
+          { kode: '1.01.17', desc: 'Penentuan HPP terlalu rendah sehingga penentuan harga jual lebih rendah dari yang seharusnya', rekom: [1,5,9,11,12] },
+          { kode: '1.01.18', desc: 'Jaminan pelaksanaan dalam pelaksanaan pekerjaan, pemanfaatan barang dan pemberian fasilitas tidak dapat dicairkan', rekom: [1,5,9,11,12] },
+          { kode: '1.01.19', desc: 'Penyetoran penerimaan negara/daerah dengan bukti fiktif', rekom: [1,5,9,11,12] },
+        ]
+      },
+      {
+        id: '1.02',
+        label: 'Sub-Kelompok 1.02 · Potensi Kerugian Negara/Daerah atau Kerugian Negara/Daerah yang terjadi pada Perusahaan Milik Negara/Daerah',
+        rows: [
+          { kode: '1.02.01', desc: 'Kelebihan pembayaran dalam pengadaan barang/jasa tetapi pembayaran pekerjaan belum dilakukan sebagian atau seluruhnya', rekom: [5,9,12] },
+          { kode: '1.02.02', desc: 'Rekanan belum melaksanakan kewajiban pemeliharaan barang hasil pengadaan yang telah rusak selama masa pemeliharaan', rekom: [3,6,9,12] },
+          { kode: '1.02.03', desc: 'Aset dikuasai pihak lain', rekom: [2,5,6,9,12] },
+          { kode: '1.02.04', desc: 'Pembelian aset yang berstatus sengketa', rekom: [5,6,9,12] },
+          { kode: '1.02.05', desc: 'Aset tidak diketahui keberadaannya', rekom: [2,5,6,9,12] },
+          { kode: '1.02.06', desc: 'Pemberian jaminan pelaksanaan dalam pelaksanaan pekerjaan, pemanfaatan barang dan pemberian fasilitas tidak sesuai ketentuan', rekom: [5,6,9,12] },
+          { kode: '1.02.07', desc: 'Pihak ketiga belum melaksanakan kewajiban untuk menyerahkan aset kepada negara/daerah', rekom: [5,6,9,12] },
+          { kode: '1.02.08', desc: 'Piutang/pinjaman atau dana bergulir yang berpotensi tidak tertagih', rekom: [5,9,12] },
+          { kode: '1.02.09', desc: 'Penghapusan piutang tidak sesuai ketentuan', rekom: [5,7,9,11,12] },
+          { kode: '1.02.10', desc: 'Pencairan anggaran pada akhir tahun anggaran untuk pekerjaan yang belum selesai', rekom: [1,3,5,9,11,12] },
+        ]
+      },
+      {
+        id: '1.03',
+        label: 'Sub-Kelompok 1.03 · Kekurangan Penerimaan Negara/Daerah atau Perusahaan Milik Negara/Daerah',
+        rows: [
+          { kode: '1.03.01', desc: 'Penerimaan negara/daerah atau denda keterlambatan pekerjaan belum/tidak ditetapkan dipungut/diterima/disetor ke kas negara/daerah atau perusahaan milik negara/daerah', rekom: [1,5,9,11,12] },
+          { kode: '1.03.02', desc: 'Penggunaan langsung penerimaan negara/daerah', rekom: [5,6,9,12] },
+          { kode: '1.03.03', desc: 'Dana Perimbangan yang telah ditetapkan belum masuk ke kas daerah', rekom: [1,5,6,9,12] },
+          { kode: '1.03.04', desc: 'Penerimaan negara/daerah diterima atau digunakan oleh instansi yang tidak berhak', rekom: [1,5,6,9,11,12] },
+          { kode: '1.03.05', desc: 'Pengenaan tarif pajak/PNBP lebih rendah dari ketentuan', rekom: [1,5,6,9,12] },
+          { kode: '1.03.06', desc: 'Koreksi perhitungan bagi hasil dengan KKKS', rekom: [1,5,6,9,12] },
+          { kode: '1.03.07', desc: 'Kelebihan pembayaran subsidi oleh pemerintah', rekom: [1,5,6,9,12] },
+        ]
+      },
+      {
+        id: '1.04',
+        label: 'Sub-Kelompok 1.04 · Administrasi',
+        rows: [
+          { kode: '1.04.01', desc: 'Pertanggungjawaban tidak akuntabel (bukti tidak lengkap/tidak valid)', rekom: [5,6,9,12] },
+          { kode: '1.04.02', desc: 'Pekerjaan dilaksanakan mendahului kontrak atau penetapan anggaran', rekom: [5,9,12] },
+          { kode: '1.04.03', desc: 'Proses pengadaan barang/jasa tidak sesuai ketentuan (tidak menimbulkan kerugian negara)', rekom: [5,6,9,13] },
+          { kode: '1.04.04', desc: 'Pemecahan kontrak untuk menghindari pelelangan', rekom: [5,6,9,12] },
+          { kode: '1.04.05', desc: 'Pelaksanaan lelang secara performa', rekom: [5,9,12] },
+          { kode: '1.04.06', desc: 'Penyimpangan terhadap peraturan perundang-undangan bidang pengelolaan perlengkapan atau barang milik negara/daerah/perusahaan', rekom: [4,5,6,9,13] },
+          { kode: '1.04.07', desc: 'Penyimpangan terhadap peraturan perundang-undangan bidang tertentu lainnya seperti kehutanan, pertambangan, perpajakan, dll', rekom: [5,9,12] },
+          { kode: '1.04.08', desc: 'Koreksi perhitungan subsidi/kewajiban pelayanan umum', rekom: [6,9] },
+          { kode: '1.04.09', desc: 'Pembentukan cadangan piutang, perhitungan penyusutan atau amortisasi tidak sesuai ketentuan', rekom: [5,6,9,12] },
+          { kode: '1.04.10', desc: 'Penyetoran penerimaan negara/daerah atau kas di bendaharawan ke kas negara/daerah melebihi batas waktu yang ditentukan', rekom: [5,9] },
+          { kode: '1.04.11', desc: 'Pertanggungjawaban/penyetoran uang persediaan melebihi batas waktu yang ditentukan', rekom: [5,9] },
+          { kode: '1.04.12', desc: 'Sisa kas di bendahara pengeluaran akhir tahun anggaran belum/tidak disetor ke kas negara/daerah', rekom: [1,5,6,9,12] },
+          { kode: '1.04.13', desc: 'Pengeluaran investasi pemerintah tidak didukung bukti yang sah', rekom: [5,6,9,12] },
+          { kode: '1.04.14', desc: 'Kepemilikan aset tidak/belum didukung bukti yang sah', rekom: [5,6,9,12] },
+          { kode: '1.04.15', desc: 'Pengalihan anggaran antar MAK tidak sah', rekom: [5,9] },
+          { kode: '1.04.16', desc: 'Pelampauan pagu anggaran', rekom: [5,6,9,12] },
+        ]
+      },
+      {
+        id: '1.05',
+        label: 'Sub-Kelompok 1.05 · Indikasi Tindak Pidana',
+        rows: [
+          { kode: '1.05.01', desc: 'Indikasi tindak pidana korupsi', rekom: [5,11,12] },
+          { kode: '1.05.02', desc: 'Indikasi tindak pidana perbankan', rekom: [5,11,12] },
+          { kode: '1.05.03', desc: 'Indikasi tindak pidana perpajakan', rekom: [5,11,12] },
+          { kode: '1.05.04', desc: 'Indikasi tindak pidana kepabeanan', rekom: [5,11,12] },
+          { kode: '1.05.05', desc: 'Indikasi tindak pidana kehutanan', rekom: [5,11,12] },
+          { kode: '1.05.06', desc: 'Indikasi tindak pidana pasar modal', rekom: [5,11,12] },
+          { kode: '1.05.07', desc: 'Indikasi tindak pidana khusus lainnya', rekom: [5,11,12] },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'K2',
+    label: 'Kelompok 2 · Temuan Kelemahan Sistem Pengendalian Intern',
+    sub: [
+      {
+        id: '2.01',
+        label: 'Sub-Kelompok 2.01 · Kelemahan Sistem Pengendalian Akuntansi dan Pelaporan',
+        rows: [
+          { kode: '2.01.01', desc: 'Pencatatan tidak/belum dilakukan atau tidak akurat', rekom: [5,6,7] },
+          { kode: '2.01.02', desc: 'Proses penyusunan laporan tidak sesuai ketentuan', rekom: [5,6,13] },
+          { kode: '2.01.03', desc: 'Entitas terlambat menyampaikan laporan', rekom: [5,6] },
+          { kode: '2.01.04', desc: 'Sistem informasi akuntansi dan pelaporan tidak memadai', rekom: [7,13] },
+          { kode: '2.01.05', desc: 'Sistem informasi akuntansi dan pelaporan belum didukung SDM yang memadai', rekom: [8,13] },
+        ]
+      },
+      {
+        id: '2.02',
+        label: 'Sub-Kelompok 2.02 · Kelemahan Sistem Pengendalian Pelaksanaan Anggaran Pendapatan dan Belanja',
+        rows: [
+          { kode: '2.02.01', desc: 'Perencanaan kegiatan tidak memadai', rekom: [5,9,13] },
+          { kode: '2.02.02', desc: 'Mekanisme pemungutan, penyetoran dan pelaporan serta penggunaan penerimaan negara/daerah/perusahaan dan hibah tidak sesuai ketentuan', rekom: [5,9,13] },
+          { kode: '2.02.03', desc: 'Penyimpangan terhadap peraturan perundang-undangan bidang teknis tertentu atau ketentuan intern organisasi tentang pendapatan dan belanja', rekom: [5,9,13] },
+          { kode: '2.02.04', desc: 'Pelaksanaan belanja di luar mekanisme APBN/APBD', rekom: [7,9] },
+          { kode: '2.02.05', desc: 'Penetapan/pelaksanaan kebijakan tidak tepat atau belum dilakukan berakibat hilangnya potensi penerimaan/pendapatan', rekom: [5,9,11] },
+          { kode: '2.02.06', desc: 'Penetapan/pelaksanaan kebijakan tidak tepat atau belum dilakukan berakibat peningkatan biaya/belanja', rekom: [5,9,11] },
+          { kode: '2.02.07', desc: 'Kelemahan pengelolaan fisik aset', rekom: [5,7,9,12] },
+        ]
+      },
+      {
+        id: '2.03',
+        label: 'Sub-Kelompok 2.03 · Kelemahan Struktur Pengendalian Intern',
+        rows: [
+          { kode: '2.03.01', desc: 'Entitas tidak memiliki SOP yang formal untuk suatu prosedur atau keseluruhan prosedur', rekom: [9,13] },
+          { kode: '2.03.02', desc: 'SOP yang ada pada entitas tidak berjalan secara optimal atau tidak ditaati', rekom: [5,13] },
+          { kode: '2.03.03', desc: 'Entitas tidak memiliki satuan pengawas intern', rekom: [9,10] },
+          { kode: '2.03.04', desc: 'Satuan pengawas intern yang ada tidak memadai atau tidak berjalan optimal', rekom: [5,10] },
+          { kode: '2.03.05', desc: 'Tidak ada pemisahan tugas dan fungsi yang memadai', rekom: [9,10] },
+        ]
+      },
+    ]
+  },
+  {
+    id: 'K3',
+    label: 'Kelompok 3 · Temuan 3E',
+    sub: [
+      {
+        id: '3.01',
+        label: 'Sub-Kelompok 3.01 · Ketidakhematan / Pemborosan / Ketidakekonomisan',
+        rows: [
+          { kode: '3.01.01', desc: 'Pengadaan barang/jasa melebihi kebutuhan', rekom: [5,9] },
+          { kode: '3.01.02', desc: 'Penetapan kualitas dan kuantitas barang/jasa yang digunakan tidak sesuai standar', rekom: [5,9,13] },
+          { kode: '3.01.03', desc: 'Pemborosan keuangan negara/daerah/perusahaan atau kemahalan harga', rekom: [5,9,12] },
+        ]
+      },
+      {
+        id: '3.02',
+        label: 'Sub-Kelompok 3.02 · Ketidakefisienan',
+        rows: [
+          { kode: '3.02.01', desc: 'Penggunaan kuantitas input untuk satu satuan output lebih besar/tinggi dari yang seharusnya', rekom: [5,9,13] },
+          { kode: '3.02.02', desc: 'Penggunaan kualitas input untuk satu satuan output lebih tinggi dari seharusnya', rekom: [5,9,13] },
+        ]
+      },
+      {
+        id: '3.03',
+        label: 'Sub-Kelompok 3.03 · Ketidakefektifan',
+        rows: [
+          { kode: '3.03.01', desc: 'Penggunaan anggaran tidak tepat sasaran/tidak sesuai peruntukan', rekom: [5,9] },
+          { kode: '3.03.02', desc: 'Pemanfaatan barang/jasa dilakukan tidak sesuai dengan rencana yang ditetapkan', rekom: [5,9,12] },
+          { kode: '3.03.03', desc: 'Barang yang dibeli belum/tidak dapat dimanfaatkan', rekom: [5,9,11] },
+          { kode: '3.03.04', desc: 'Pemanfaatan barang/jasa tidak berdampak terhadap pencapaian tujuan organisasi', rekom: [5,9,11] },
+          { kode: '3.03.05', desc: 'Pelaksanaan kegiatan terlambat/terhambat sehingga mempengaruhi pencapaian tujuan organisasi', rekom: [5,9,11] },
+          { kode: '3.03.06', desc: 'Pelayanan kepada masyarakat tidak optimal', rekom: [5,8,9,11,13] },
+          { kode: '3.03.07', desc: 'Fungsi atau tugas instansi yang diperiksa tidak diselenggarakan dengan baik termasuk target penerimaan tidak tercapai', rekom: [5,8,9,11,13] },
+          { kode: '3.03.08', desc: 'Penggunaan biaya promosi/pemasaran tidak efektif', rekom: [5,9,11] },
+        ]
+      },
+    ]
+  },
+];
+
+const glosarium = [
+  // A - E
+  { term: 'Administrasi (temuan)', def: 'Ketidaktertiban dokumen, prosedur, atau pertanggungjawaban tanpa dampak langsung pada kerugian.' },
+  { term: 'Akibat', def: 'Dampak atau risiko yang ditimbulkan karena adanya perbedaan antara kondisi (kenyataan) dengan kriteria (aturan).' },
+  { term: 'APIP (Aparat Pengawasan Intern Pemerintah)', def: 'Lembaga pengawas internal yang bertugas memastikan kebijakan dan program pemerintah dijalankan secara efektif, efisien, dan sesuai tujuan.' },
+  { term: 'Aset dikuasai pihak lain', def: 'Aset pemerintah seperti tanah, gedung atau peralatan kantor yang digunakan pihak lain secara tidak sah dan tanpa adanya perjanjian pinjam meminjam yang jelas, atau aset yang belum dikembalikan oleh pihak lain setelah berakhirnya masa peminjaman.' },
+  { term: 'Aset tidak diketahui keberadaannya', def: 'Hasil pemeriksaan menunjukan bahwa terdapat aset yang tercantum dalam catatan akuntansi BMN/D tetapi tidak diketahui keberadaan fisiknya.' },
+  { term: 'Atribut Rekomendasi', def: 'Kode klasifikasi yang digunakan untuk mengelompokkan jenis saran atau arahan perbaikan yang diberikan oleh APIP.' },
+  { term: 'Atribut Temuan', def: 'Kode klasifikasi untuk mengelompokkan jenis penyimpangan atau kelemahan yang ditemukan selama proses pengawasan.' },
+  { term: 'Audit (Pemeriksaan)', def: 'Proses identifikasi masalah, analisis, dan evaluasi yang dilakukan secara independen, objektif, dan profesional berdasarkan standar pengawasan untuk menilai kebenaran, kecermatan, kredibilitas, dan keandalan informasi.' },
+  { term: 'Belanja dan/atau pengadaan barang/jasa fiktif', def: 'Praktik yang melibatkan pencatatan atau pelaporan pembelian barang dan jasa yang tidak pernah benar-benar terjadi, namun dicatat seolah-olah nyata dalam dokumen keuangan dan laporan pertanggungjawaban.' },
+  { term: 'Belanja tidak sesuai atau melebihi ketentuan', def: 'Terdapat pengeluaran biaya yang tidak diperkenankan oleh peraturan perundang-undangan atau nilai yang diberikan lebih tinggi dari nilai yang ditetapkan dalam peraturan perundang-undangan.' },
+  { term: 'Ekonomis', def: 'Kelayakan dalam perolehan sumber daya (input) dengan kualitas dan kuantitas tertentu pada tingkat harga terendah.' },
+  { term: 'Efektif', def: 'Pencapaian hasil (outcome) yang sesuai dengan target atau tujuan yang telah ditetapkan.' },
+  { term: 'Efisien', def: 'Pencapaian output yang maksimal dengan input tertentu, atau penggunaan input minimal untuk mencapai output tertentu.' },
+  { term: 'Entitas', def: 'Unit pemerintahan yang mengelola anggaran, barang, dan jasa, serta wajib menyelenggarakan akuntansi.' },
+  { term: 'Entitas belum/tidak melaksanakan tuntutan perbendaharaan (TP) sesuai ketentuan', def: 'Pembiaran terhadap pemulihan kerugian daerah yang seharusnya ditagih kepada Bendahara.' },
+  { term: 'Entitas tidak memiliki satuan pengawas intern', def: 'Satuan pengawas intern belum dibentuk secara resmi berdasarkan surat ketetapan pimpinan entitas.' },
+  { term: 'Evaluasi', def: 'Rangkaian kegiatan membandingkan hasil atau kinerja dengan standar, rencana, atau norma yang telah ditetapkan, serta memberikan penilaian atas keberhasilan suatu program/kegiatan.' },
+  // I - K
+  { term: 'Ikhtisar Laporan Hasil Pengawasan (ILHP)', def: 'Laporan ringkas yang menyajikan informasi mengenai hasil pengawasan yang dilakukan oleh APIP dalam satu periode tertentu (tahunan).' },
+  { term: 'Indikasi tindak pidana', def: 'Temuan yang mengarah pada dugaan pelanggaran hukum (misalnya korupsi, pajak, dll).' },
+  { term: 'Jaminan pelaksanaan tidak dapat dicairkan', def: 'Jaminan pelaksanaan tidak dapat dicairkan karena suatu hal seperti kadaluarsa, bank penjamin bermasalah, dll.' },
+  { term: 'Kelebihan pembayaran selain kekurangan volume pekerjaan dan/atau barang', def: 'Kelebihan pembayaran akibat kesalahan administratif atau sistem, di luar masalah volume fisik.' },
+  { term: 'Kekurangan volume pekerjaan dan/atau barang', def: 'Barang yang diterima (kualitas maupun kuantitas) kurang dari yang seharusnya. Pekerjaan dilaksanakan kurang 100% tapi pembayaran dilakukan 100%, sehingga kerugian merupakan selisih antara uang yang telah dibayar dengan nilai prestasi pekerjaan/barang yang diterima.' },
+  { term: 'Kelebihan pembayaran subsidi oleh pemerintah', def: 'Penyaluran dana subsidi dari pemerintah kepada penyelenggara atau masyarakat yang nilainya melebihi tagihan nyata atau ketentuan yang berlaku.' },
+  { term: 'Kelebihan penetapan dan pembayaran restitusi pajak atau penetapan kompensasi kerugian', def: 'Penetapan besarnya restitusi pajak atau kompensasi kerugian melebihi dari ketentuan yang berlaku.' },
+  { term: 'Kelemahan sistem pengendalian akuntansi & pelaporan', def: 'Sistem pencatatan dan pelaporan keuangan tidak memadai atau tidak akurat.' },
+  { term: 'Kelemahan sistem pengendalian pelaksanaan anggaran', def: 'Proses perencanaan, pelaksanaan, dan pengawasan anggaran tidak berjalan baik.' },
+  { term: 'Ketidakefisienan', def: 'Penggunaan sumber daya (waktu, tenaga, material) yang berlebihan untuk menghasilkan satu satuan output. Rasio antara input dan outpput yang lebih tinggi dibandingkan standar atau rata-rata rasio untuk kegiatan serupa.' },
+  { term: 'Ketidakefektifan', def: 'Hasil akhir atau manfaat yang direncanakan tidak terwujud atau tidak memberikan dampak bagi masyarakat. Fokus: Outcome/Hasil Akhir.' },
+  { term: 'Ketidakhematan', def: 'Penggunaan input dengan harga atau kualitas/kuantitas yang lebih tinggi dari standar, kuantitas/kualitas yang melebihi kebutuhan, dan harga yang lebih mahal dibandingkan dengan pengadaan serupa pada waktu dan kondisi yang sama.' },
+  { term: 'Ketidakpatuhan terhadap peraturan', def: 'Pelanggaran atau penyimpangan terhadap peraturan perundang-undangan yang berlaku, baik yang berdampak finansial maupun administratif.' },
+  { term: 'Kerugian negara/daerah', def: 'Kekurangan uang, surat berharga, dan barang yang nyata dan pasti jumlahnya sebagai akibat perbuatan melawan hukum baik sengaja maupun lalai.' },
+  { term: 'Kondisi', def: 'Fakta atau kenyataan yang ditemukan di lapangan saat proses pengawasan dilakukan.' },
+  { term: 'Koreksi perhitungan bagi hasil dengan KKKS (Kontraktor Kontrak Kerja Sama)', def: 'Penyesuaian angka pembagian keuntungan antara pemerintah dan kontraktor migas akibat ditemukannya kesalahan penghitungan atau ketidakpatuhan aturan.' },
+  { term: 'Koreksi perhitungan subsidi/kewajiban pelayanan umum', def: 'Koreksi perhitungan subsidi tidak berdampak pada pengembalian atau kompensasi subsidi.' },
+  { term: 'Kriteria', def: 'Standar, peraturan, atau ketentuan yang seharusnya dipatuhi atau menjadi dasar pelaksanaan suatu kegiatan.' },
+  // P - R
+  { term: 'Pelaksanaan lelang secara performa', def: 'Proses lelang yang dilakukan hanya sebagai formalitas administratif untuk melegalkan penunjukan penyedia yang sebenarnya sudah ditentukan sebelumnya.' },
+  { term: 'Pelanggaran ketentuan pemberian diskon penjualan', def: 'Perusahaan negara/daerah memberikan diskon penjualan kepada konsumen tertentu dengan tarif yang lebih besar dari ketentuan.' },
+  { term: 'Pemahalan Harga (Mark-up)', def: 'Menaikkan harga barang/jasa secara sengaja di atas harga pasar untuk mendapatkan keuntungan pribadi/pihak tertentu.' },
+  { term: 'Pemantauan', def: 'Proses penilaian kemajuan suatu program atau kegiatan dalam mencapai tujuan yang telah ditetapkan.' },
+  { term: 'Pembelian aset yang berstatus sengketa', def: 'Pemerintah telah melakukan pembayaran atas suatu aset dan di kemudian hari diketahui bahwa aset tersebut berstatus sengketa. Berpotensi merugikan negara apabila di pengadilan terbukti bahwa tanah yang dibeli bukan milik pihak yang menerima pembayaran.' },
+  { term: 'Pembentukan cadangan piutang, perhitungan penyusutan atau amortisasi tidak sesuai ketentuan', def: 'Metode perhitungan yang digunakan dalam pembentukan cadangan piutang, penyusutan atau amortisasi tidak sesuai ketentuan.' },
+  { term: 'Pemberian jaminan tidak sesuai ketentuan', def: 'Tidak adanya jaminan atas pelaksanaan pekerjaan, pemanfaatan kayu/barang negara, dan pemberian fasilitas seperti kemudahan ekspor/impor.' },
+  { term: 'Pemecahan kontrak untuk menghindari pelelangan', def: 'Kegiatan yang sama atau pengadaan barang yang sama dalam suatu kegiatan/program yang pengadaannya dilakukan berulang-ulang dengan nilai yang lebih kecil untuk menghindari pelelangan.' },
+  { term: 'Pencairan anggaran pada akhir tahun untuk pekerjaan belum selesai', def: 'Pada akhir tahun anggaran terdapat pencairan anggaran oleh pengelola anggaran untuk membayar pekerjaan yang dilaksanakan oleh rekanan walaupun pekerjaan tersebut belum selesai.' },
+  { term: 'Penerimaan negara/daerah diterima atau digunakan oleh instansi yang tidak berhak', def: 'Penerimaan yang berdasarkan ketentuan berlaku termasuk penerimaan suatu instansi, tetapi dipungut/digunakan oleh instansi lain yang tidak berhak atau disetor ke instansi yang tidak berhak.' },
+  { term: 'Penetapan/pelaksanaan kebijakan tidak tepat berakibat hilangnya potensi penerimaan', def: 'Kebijakan yang dibuat tidak tepat atau kebijakannya sudah tepat tetapi dalam pelaksanaannya tidak tepat sehingga negara/daerah kehilangan potensi pendapatan yang seharusnya diterima.' },
+  { term: 'Pengalihan anggaran antar MAK tidak sah', def: 'Pergeseran dana dari satu Mata Anggaran Kegiatan (MAK) ke MAK lainnya yang dilakukan tanpa melalui prosedur revisi anggaran yang resmi atau melampaui kewenangan.' },
+  { term: 'Pengenaan tarif pajak/PNBP lebih rendah dari ketentuan', def: 'Tarif yang dikenakan kepada wajib setor lebih rendah daripada tarif yang diatur menurut ketentuan yang berlaku sehingga pajak/PNBP yang diterima oleh negara/daerah lebih kecil dari yang seharusnya.' },
+  { term: 'Penghapusan hak tagih tidak sesuai ketentuan', def: 'Pemberhentian upaya hukum untuk menagih piutang kepada debitur yang melanggar ketentuan dan/atau dilakukan tanpa persetujuan pihak yang berwenang.' },
+  { term: 'Penghapusan piutang tidak sesuai ketentuan', def: 'Penghapusan piutang dalam laporan keuangan yang melanggar ketentuan dan/atau dilakukan tanpa persetujuan pihak yang berwenang, tetapi atas piutang tersebut masih dapat diupayakan untuk ditagih.' },
+  { term: 'Penggunaan langsung penerimaan negara/daerah', def: 'Penggunaan penerimaan negara/daerah tanpa melalui mekanisme anggaran.' },
+  { term: 'Penggunaan uang/barang untuk kepentingan pribadi', def: 'Penggunaan uang atau barang secara tidak sah yang digunakan selain untuk keperluan dinas.' },
+  { term: 'Pengeluaran investasi pemerintah tidak didukung bukti yang sah', def: 'Kegiatan penyertaan modal atau investasi lainnya tidak dilengkapi dengan dokumen yang sah.' },
+  { term: 'Penjualan/pertukaran/penghapusan aset negara/daerah tidak sesuai ketentuan', def: 'Melanggar ketentuan penghapusan dan nilai uang/aset yang diterima oleh negara/daerah lebih kecil dari nilai aset yang dijual/dipertukarkan/dihapuskan.' },
+  { term: 'Penyetoran penerimaan negara/daerah dengan bukti fiktif', def: 'Penyelewengan penerimaan negara/daerah dengan cara membuat bukti penyetoran fiktif seolah-olah uang yang ada di bendaharawan penerima telah disetor ke kas negara/daerah.' },
+  { term: 'Penyetoran penerimaan negara/daerah melebihi batas waktu', def: 'Penerimaan negara/daerah sudah disetor ke kas negara/daerah tetapi tanggal penyetoran dilakukan melewati batas waktu yang ditentukan.' },
+  { term: 'Pertanggungjawaban/penyetoran uang persediaan melebihi batas waktu', def: 'Kas di bendaharawan sudah disetor ke kas negara/daerah tetapi tanggal penyetoran/pertanggungjawaban dilakukan melewati batas waktu yang ditentukan.' },
+  { term: 'Pihak ketiga belum melaksanakan kewajiban menyerahkan aset kepada negara/daerah', def: 'Adanya kewajiban pihak ketiga berdasarkan persyaratan dalam peraturan perundang-undangan tertentu untuk menyerahkan sejumlah aset kepada negara/daerah yang belum dilaksanakan.' },
+  { term: 'Pimpinan APIP', def: 'Pejabat tertinggi pada instansi pengawasan, seperti Inspektur Utama, Inspektur Jenderal, atau Inspektur Provinsi/Kabupaten/Kota.' },
+  { term: 'Piutang/pinjaman dana bergulir yang berpotensi tidak tertagih', def: 'Piutang/pinjaman yang berpotensi macet bukan disebabkan oleh risiko bisnis, melainkan oleh pelanggaran prosedur atau peraturan perundang-undangan. Potensi nilai kerugian adalah selisih pinjaman dengan nilai agunan yang bisa disita/ditarik.' },
+  { term: 'Potensi Kerugian', def: 'Keadaan di mana terdapat risiko kehilangan uang atau aset negara/daerah jika tindakan perbaikan tidak segera dilakukan.' },
+  { term: 'Penggunaan kualitas input lebih tinggi dari seharusnya', def: 'Pemborosan anggaran karena penggunaan barang/jasa dengan spesifikasi (kualitas) yang terlalu mewah atau melebihi kebutuhan nyata untuk menghasilkan suatu output.' },
+  { term: 'Penggunaan kuantitas input lebih besar dari seharusnya', def: 'Pemborosan sumber daya karena jumlah input (biaya, waktu, material) yang digunakan untuk menghasilkan satu produk/layanan lebih banyak daripada standar yang ditetapkan.' },
+  { term: 'Pengembalian pinjaman/piutang atau dana bergulir macet', def: 'Pinjaman/piutang yang macet bukan disebabkan oleh risiko bisnis namun diakibatkan oleh pelanggaran prosedur atau peraturan perundang-undangan sehingga pinjaman menjadi macet atau tidak dapat lagi dilakukan upaya penagihan.' },
+  { term: 'Rekanan pengadaan barang/jasa', def: 'Pihak ketiga (Perusahaan/Individu) yang terikat kontrak untuk menyediakan barang atau jasa sesuai spesifikasi pemerintah.' },
+  { term: 'Rekanan belum melaksanakan kewajiban pemeliharaan barang hasil pengadaan', def: 'Berpotensi mengakibatkan kerugian apabila nyata-nyata rekanan tidak melaksanakan kewajiban pemeliharaan yang sudah disepakati dalam kontrak.' },
+  { term: 'Rekomendasi', def: 'Saran profesional dari auditor kepada pimpinan instansi untuk melakukan tindakan perbaikan guna mengatasi kelemahan atau penyimpangan yang ditemukan.' },
+  { term: 'Review (Penelaahan)', def: 'Penelaahan ulang bukti-bukti suatu kegiatan untuk memberikan keyakinan terbatas bahwa kegiatan tersebut telah dilaksanakan sesuai dengan ketentuan.' },
+  // S - T
+  { term: 'Sebab', def: 'Alasan atau faktor yang mengakibatkan terjadinya perbedaan antara kondisi dengan kriteria.' },
+  { term: 'Signifikan', def: 'Tingkat kepentingan suatu temuan atau masalah yang dapat memengaruhi pengambilan keputusan atau opini hasil pengawasan.' },
+  { term: 'SPI (Sistem Pengendalian Intern)', def: 'Proses yang integral pada tindakan dan kegiatan yang dilakukan secara terus menerus untuk memberikan keyakinan memadai atas tercapainya tujuan organisasi melalui kegiatan yang efektif dan efisien, keandalan pelaporan keuangan, pengamanan aset negara, dan ketaatan terhadap peraturan perundang-undangan.' },
+  { term: 'Spesifikasi barang/jasa yang diterima tidak sesuai dengan kontrak', def: 'Barang yang diterima dari rekanan tidak sama dengan yang diperjanjikan dalam kontrak dan teridentifikasi nilainya lebih rendah dari nilai barang yang diperjanjikan. Kerugian merupakan total loss karena hasil pekerjaan/barang tidak sesuai standar mutu yang ditetapkan sehingga tidak dapat digunakan.' },
+  { term: 'SOP (Standar Operasional Prosedur)', def: 'Rangkaian instruksi kerja yang dibakukan mengenai proses penyelenggaraan administrasi suatu prosedur tertentu.' },
+  { term: 'Temuan Hasil Pengawasan', def: 'Masalah atau penyimpangan yang ditemukan oleh auditor yang didukung oleh bukti-bukti audit yang cukup dan relevan.' },
+  { term: 'Tindak Lanjut', def: 'Langkah-langkah yang diambil oleh auditi (pihak yang diperiksa) untuk melaksanakan rekomendasi yang diberikan oleh auditor.' },
+];
+
+const checklist_items = [
+  'Bukti berasal dari sumber yang valid untuk mendukung temuan',
+  'Bukti relevan dengan permasalahan yang ditemukan',
+  'Bukti dapat ditelusuri dan diverifikasi',
+  'Kondisi ditulis sesuai fakta dan data',
+  'Kriteria mengacu pada peraturan/standar yang jelas',
+  'Sebab diuraikan secara logis dan dapat dipertanggungjawabkan',
+  'Akibat Menggambarkan dampak yang nyata/jelas',
+  'Rekomendasi menjawab permasalahan utama dalam temuan ',
+  'Rekomendasi memberikan perbaikan/nilai tambah',
+];
+
+// ===== BUILD TEMUAN =====
+function buildTemuan(query) {
+  const container = document.getElementById('temuan-content');
+  const q = query ? query.toLowerCase() : '';
+  let html = '';
+  let totalFound = 0;
+
+  kelompok.forEach((k, ki) => {
+    let kHtml = '';
+    let kCount = 0;
+
+    k.sub.forEach((s, si) => {
+      let rows = s.rows.filter(r =>
+        !q || r.kode.toLowerCase().includes(q) || r.desc.toLowerCase().includes(q)
+      );
+      if (!rows.length) return;
+      kCount += rows.length;
+
+      let rowsHtml = rows.map(r => {
+        const kodeHl = q ? r.kode.replace(new RegExp(q, 'gi'), m => '<mark>' + m + '</mark>') : r.kode;
+        const descHl = q ? r.desc.replace(new RegExp(q, 'gi'), m => '<mark>' + m + '</mark>') : r.desc;
+        const chips = r.rekom.map(n => `<span class="rekom-chip" onclick="showRekom(${n})" title="R-${String(n).padStart(2,'0')}: ${rekomMap['R-' + String(n).padStart(2,'0')]}">R-${String(n).padStart(2,'0')}</span>`).join('');
+        return `<div class="temuan-row">
+          <span class="kode-tag" onclick="showTemuan('${r.kode}')">${kodeHl}</span>
+          <span class="temuan-desc">${descHl}</span>
+          <div class="rekom-chips">${chips}</div>
+        </div>`;
+      }).join('');
+
+      const subId = 'sub-' + s.id.replace('.', '-');
+      kHtml += `<div class="sub-kelompok">
+        <div class="sub-header${q ? ' open' : ''}" id="sh-${subId}" onclick="toggleSub('${subId}')">
+          <span>${s.label}</span>
+          <span class="chevron${q ? '' : ''}">${q ? '▲' : '▼'}</span>
+        </div>
+        <div class="sub-body${q ? ' open' : ''}" id="sb-${subId}">${rowsHtml}</div>
+      </div>`;
+    });
+
+    if (kCount > 0) {
+      totalFound += kCount;
+      html += `<div class="kelompok-header">
+        <span>${k.label}</span>
+        <span class="badge">${kCount} temuan</span>
+      </div>${kHtml}`;
+    }
+  });
+
+  if (!html) {
+    html = `<div class="no-results"><div class="icon">🔍</div><p>Tidak ada temuan yang cocok dengan "<strong>${query}</strong>"</p></div>`;
+  }
+
+  container.innerHTML = html;
+  // Re-open first sub by default if no query
+  if (!q) {
+    const first = container.querySelector('.sub-header');
+    if (first) {
+      const id = first.id.replace('sh-', '');
+      toggleSub(id);
+    }
+  }
+}
+
+function toggleSub(id) {
+  const header = document.getElementById('sh-' + id);
+  const body = document.getElementById('sb-' + id);
+  if (!header || !body) return;
+  const isOpen = body.classList.contains('open');
+  if (isOpen) {
+    body.classList.remove('open');
+    header.classList.remove('open');
+    header.querySelector('.chevron').textContent = '▼';
+  } else {
+    body.classList.add('open');
+    header.classList.add('open');
+    header.querySelector('.chevron').textContent = '▲';
+  }
+}
+
+function filterTemuan(q) {
+  buildTemuan(q);
+}
+
+// ===== SHOW TEMUAN MODAL =====
+function showTemuan(kode) {
+  let found = null;
+  kelompok.forEach(k => k.sub.forEach(s => s.rows.forEach(r => { if (r.kode === kode) found = r; } )));
+  if (!found) return;
+
+  const rekomItems = found.rekom.map(n => {
+    const code = 'R-' + String(n).padStart(2, '0');
+    const desc = rekomMap[code] || '';
+    return `<div class="modal-rekom-item">
+      <span class="modal-r-code">${code}</span>
+      <span class="modal-r-desc">${desc}</span>
+    </div>`;
+  }).join('');
+
+  document.getElementById('modal-body').innerHTML = `
+    <div class="modal-code">${found.kode}</div>
+    <div class="modal-subtitle">Detail Temuan</div>
+    <div class="modal-desc">${found.desc}</div>
+    <div class="modal-rekom-title">✅ Alternatif Rekomendasi (${found.rekom.length} pilihan)</div>
+    <div class="modal-rekom-list">${rekomItems}</div>`;
+  document.getElementById('modal').classList.add('open');
+}
+
+// ===== SHOW REKOM MODAL =====
+function showRekom(n) {
+  const code = 'R-' + String(n).padStart(2, '0');
+  const desc = rekomMap[code] || 'Tidak ditemukan';
+  document.getElementById('modal-body').innerHTML = `
+    <div class="modal-code">${code}</div>
+    <div class="modal-subtitle">Kode Rekomendasi</div>
+    <div class="modal-desc">${desc}</div>`;
+  document.getElementById('modal').classList.add('open');
+}
+
+function closeModal(e) {
+  if (!e || e.target === document.getElementById('modal')) {
+    document.getElementById('modal').classList.remove('open');
+  }
+}
+
+// ===== BUILD REKOMENDASI =====
+function buildRekom() {
+  const grid = document.getElementById('rekom-grid');
+  grid.innerHTML = rekomendasi.map(r => `
+    <div class="rekom-card" onclick="showRekom(${parseInt(r.code.split('-')[1])})">
+      <div class="rekom-code">${r.code}</div>
+      <div class="rekom-desc">${r.desc}</div>
+    </div>`).join('');
+}
+
+// ===== BUILD PANDUAN =====
+function buildPanduan() {
+  document.getElementById('panduan-content').innerHTML = `
+    <div class="panduan-card">
+      <div class="panduan-title"><span class="icon">📌</span> Unsur KKSAR</div>
+
+      <div class="kksa-item">
+        <div class="kksa-label">Kondisi <span class="kksa-sub">(What is?)</span></div>
+        <div class="kksa-def"><strong>Definisi:</strong> Fakta atau realita yang ditemukan oleh APIP di lapangan saat pemeriksaan dilakukan.</div>
+        <div class="kksa-def"><strong>Isi:</strong> Penjelasan umum secara singkat dan uraian Apa yang terjadi atau ditemukan saat melakukan pemeriksaan</div>
+        <div class="kksa-def"><strong>Ciri kondisi yang baik:</strong> Berdasarkan bukti kuat (objektif), spesifik, tidak menggunakan opini tanpa data.</div>
+        <div class="kksa-example">💬 Contoh: <em>"Belanja yang sudah dibukukan sebesar Rp. xxx yang tidak memiliki bukti pertanggungjawabannya."</em></div>
+      </div>
+
+      <div class="kksa-item">
+        <div class="kksa-label">Kriteria <span class="kksa-sub">(What should be?)</span></div>
+        <div class="kksa-def"><strong>Definisi:</strong> Standar, peraturan, atau ketentuan yang seharusnya dipatuhi oleh auditi.</div>
+        <div class="kksa-def"><strong>Isi:</strong> Peraturan perundang-undangan, kebijakan internal, SOP, atau kontrak yang berlaku.</div>
+        <div class="kksa-def"><strong>Tips:</strong> Selalu cantumkan Nama Peraturan, Nomor, Tahun, dan Pasal secara lengkap.</div>
+        <div class="kksa-example">💬 Contoh: <em>"Permendagri No. 77 Tahun 2020 Bab V, Huruf L, Nomor 1 Paragraf 2: setiap pengeluaran harus didukung bukti yang lengkap dan sah."</em></div>
+      </div>
+
+      <div class="kksa-item">
+        <div class="kksa-label">Sebab <span class="kksa-sub">(Why did it happen?)</span></div>
+        <div class="kksa-def"><strong>Definisi:</strong> Alasan atau akar masalah mengapa terjadi perbedaan antara Kondisi (fakta) dengan Kriteria (aturan).</div>
+        <div class="kksa-def"><strong>Penting:</strong> Sebab adalah dasar untuk menentukan Rekomendasi. Jika sebabnya salah, rekomendasinya tidak akan menghilangkan masalah.</div>
+        <div class="kksa-example">💬 Contoh: <em>"Kelalaian Bendahara Pengeluaran yang membukukan pengeluaran tanpa disertai bukti belanja yang lengkap."</em></div>
+      </div>
+
+      <div class="kksa-item">
+        <div class="kksa-label">Akibat <span class="kksa-sub">(So what?)</span></div>
+        <div class="kksa-def"><strong>Definisi:</strong> Dampak atau risiko yang timbul akibat ketidaksesuaian antara kondisi dan kriteria.</div>
+        <div class="kksa-def"><strong>Ciri akibat yang kuat:</strong> Harus terukur dan nyata, bukan sekadar asumsi.</div>
+        <div class="kksa-example">💬 Contoh: <em>"Pencatatan belanja tidak valid/tidak akurat. Akibatnya terdapat pengeluaran yang belum tertanggung jawab dari sisi pengelolaan keuangan sebesar Rp. XXX."</em></div>
+      </div>
+
+       <div class="kksa-item">
+        <div class="kksa-label">Rekomendasi <span class="kksa-sub">(What should be done?)</span></div>
+        <div class="kksa-def"><strong>Definisi: </strong> Tindakan yang perlu dilakukan oleh auditi guna memperbaiki penyebab temuan</strong>.</div>
+        <div class="kksa-def"><strong>Manfaat Rekomendasi:</strong> Menghilangkan penyebab dan meminimalisir akibat.</div>
+        <div class="kksa-example">💬 Contoh: <em>"Menegur Bendahara Pengeluaran secara tertulis atas kelalaiannya melakukan penatausahaan keuangan."</em></div>
+      </div>
+
+      <div class="kksa-item">
+        <div class="kksa-label">Contoh Penetapan Kode Temuan dan Kode Rekomendasi <span class="kksa-sub"></span></div>
+        <div class="kksa-def"><strong>Judul Temuan: </strong>Terdapat belanja sebesar Rp. xxx yang tidak didukung dengan bukti pertanggungjawabannya.(1.04.01)</div>
+        <div class="kksa-def"><strong>Rekomendasi: </strong>Menegur Bendahara Pengeluaran secara tertulis atas kelalaiannya melakukan penatausahaan keuangan (05)</div>
+        
+      <div class="rumus-emas">
+        <div class="rumus-emas-title">⭐ Rumus Emas</div>
+        <p>Kondisi + Kriteria = Temuan</p>
+        <p>Sebab → diatasi dengan → Rekomendasi</p>
+        <p>Akibat → diselesaikan dengan → Tindak Lanjut (Setoran/Perbaikan)</p>
+      </div>
+    </div>`;
+}
+
+// ===== BUILD TIPS =====
+function buildTips() {
+  document.getElementById('tips-content').innerHTML = `
+    <div class="tips-card">
+      <div class="panduan-title"><span class="icon">💡</span> Tips Penetapan Kode Temuan & Rekomendasi</div>
+      <div class="tips-step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h4>Identifikasi Temuan</h4>
+          <p>Tentukan apakah temuan masuk dalam kategori Ketidakpatuhan Terhadap Peraturan (Kelompok 1), Kelemahan SPI (Kelompok 2), atau 3E (Kelompok 3).</p>
+        </div>
+      </div>
+      <div class="tips-step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h4>Cek Sub-Kelompok</h4>
+          <p>Gunakan daftar tabel untuk menentukan klasifikasi hingga ke level kode digit terkecil yang paling sesuai dengan kondisi lapangan.</p>
+        </div>
+      </div>
+      <div class="tips-step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h4>Sinkronisasi Rekomendasi</h4>
+          <p>Pastikan kode rekomendasi yang dipilih berkorelasi langsung untuk menghilangkan akar penyebab (cause) dari temuan yang didapat. Rekomendasi harus spesifik, terukur, dan realistis untuk dilaksanakan. <strong>Rekomendasi dapat dipilih lebih dari satu sesuai kondisi temuan.</p>
+        </div>
+    </div>`;
+}
+
+// ===== BUILD GLOSARIUM =====
+function buildGlos(query) {
+  const q = query ? query.toLowerCase() : '';
+  const filtered = glosarium.filter(g =>
+    !q || g.term.toLowerCase().includes(q) || g.def.toLowerCase().includes(q)
+  );
+  const container = document.getElementById('glos-content');
+  if (!filtered.length) {
+    container.innerHTML = `<div class="no-results"><div class="icon">📚</div><p>Tidak ada istilah yang cocok.</p></div>`;
+    return;
+  }
+  container.innerHTML = filtered.map(g => {
+    const termHl = q ? g.term.replace(new RegExp(q, 'gi'), m => '<mark>' + m + '</mark>') : g.term;
+    const defHl = q ? g.def.replace(new RegExp(q, 'gi'), m => '<mark>' + m + '</mark>') : g.def;
+    return `<div class="glos-item">
+      <div class="glos-term">${termHl}</div>
+      <div class="glos-def">${defHl}</div>
+    </div>`;
+  }).join('');
+}
+
+function filterGlos(q) { buildGlos(q); }
+
+// ===== BUILD CHECKLIST =====
+const checkState = {};
+function buildChecklist() {
+  document.getElementById('checklist-content').innerHTML = checklist_items.map((item, i) => `
+    <div class="checklist-item${checkState[i] ? ' checked' : ''}" onclick="toggleCheck(${i}, this)">
+      <div class="check-box">${checkState[i] ? '✓' : ''}</div>
+      <div class="checklist-text">${item}</div>
+    </div>`).join('');
+}
+
+function toggleCheck(i, el) {
+  checkState[i] = !checkState[i];
+  el.classList.toggle('checked');
+  const box = el.querySelector('.check-box');
+  box.textContent = checkState[i] ? '✓' : '';
+}
+
+// ===== NAVIGATION =====
+function showTab(name) {
+  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
+  document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('sec-' + name).classList.add('active');
+  const tabs = document.querySelectorAll('.nav-tab');
+  const map = { temuan:0, rekomendasi:1, panduan:2, tips:3, glosarium:4, checklist:5 };
+  tabs[map[name]].classList.add('active');
+}
+
+function openApp() {
+  document.getElementById('cover').style.display = 'none';
+  const app = document.getElementById('app');
+  app.style.display = 'block';
+  // Scroll ke atas
+  window.scrollTo(0, 0);
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+}
+
+function backToCover() {
+  document.getElementById('cover').style.display = 'flex';
+  document.getElementById('app').style.display = 'none';
+}
+
+// ===== INIT =====
+buildTemuan('');
+buildRekom();
+buildPanduan();
+buildTips();
+buildGlos('');
+buildChecklist();
+</script>
+</body>
+</html>
